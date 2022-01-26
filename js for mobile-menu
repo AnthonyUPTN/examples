@@ -1,3 +1,6 @@
+_________________________________________________
+JS
+
 (() => {
   const menuBtnRef = document.querySelector("[data-menu-button]");
   const mobileMenuRef = document.querySelector("[data-menu]");
@@ -14,3 +17,212 @@
       body.classList.toggle("no-scroll");
   });
 })();
+______________________________________________
+добавить боди класс:
+<body class="body">
+
+добавить в цсс:
+.no-scroll {
+  overflow: hidden;
+}
+
+при клике на свг будет добавляться к боди класс но-скролл и отменяться полоса прокрутки
+________________________________________________________________________
+пример хтмл разметки
+
+<header> 
+...
+ <button
+          class="mobile-button"
+          type="button"
+          aria-controls="menu-container"
+          aria-expanded="false"
+          data-menu-button
+        >
+          <svg
+            width="24"
+            height="16"
+            aria-label="Переключатель мобильного меню"
+          >
+            <use
+              class="menu-close"
+              href="./images/icons.svg#icon-menu-close"
+            ></use>
+            <use
+              class="menu-burger"
+              href="./images/icons.svg#icon-burger"
+            ></use>
+          </svg>
+        </button>
+        <div class="menu-container modal-open" id="menu-container" data-menu>
+          <nav class="menu-nav">
+            <ul class="menu-nav__nav-list">
+              <li class="menu-nav__nav-item">
+                <a
+                  class="header__nav-link menu-nav--current"
+                  href="./index.html"
+                  >Студия</a
+                >
+              </li>
+              <li class="menu-nav__nav-item">
+                <a class="header__nav-link" href="./portfolio.html"
+                  >Портфолио</a
+                >
+              </li>
+              <li class="menu-nav__nav-item">
+                <a class="header__nav-link" href="">Контакты</a>
+              </li>
+            </ul>
+          </nav>
+
+          <ul class="menu-contacts">
+            <li class="menu-contacts__item menu-contacts__item--margin">
+              <a class="menu-contacts__content" href="tel:+380961111111">
+                +38 096 111 11 11
+              </a>
+            </li>
+            <li class="menu-contacts__item-email">
+              <a
+                class="header-contacts__content menu-contacts__content--email"
+                href="mailto:info@devstudio.com"
+              >
+                info@devstudio.com
+              </a>
+            </li>
+          </ul>
+
+          <ul class="menu-socials">
+            <li class="menu-socials__list">Instagram</li>
+            <li class="menu-socials__list">Twitter</li>
+            <li class="menu-socials__list">Facebook</li>
+            <li class="menu-socials__list">LinkedIn</li>
+          </ul>
+        </div>
+_________________________________________________               
+примеры цсс для меню-контейнер и кнопки
+        
+         .mobile-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: transparent;
+
+    border: none;
+
+    &.menu-close {
+      position: fixed;
+      top: 10px;
+      right: 15px;
+      z-index: 10;
+    }
+
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+
+    & .menu-close {
+      display: none;
+    }
+    &.is-open .menu-close {
+      display: block;
+    }
+    &.is-open .menu-burger {
+      display: none;
+    }
+    @include mq(tablet) {
+      display: none;
+    }
+  }
+
+  .menu-container {
+    background-color: $color-white;
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    &.is-open {
+      display: block;
+      @include mq(tablet) {
+        display: none;
+      }
+    }
+
+    @include mq(mobile-only) {
+      display: none;
+      padding: 48px 40px;
+    }
+    @include mq(tablet) {
+      display: none;
+    }
+  }
+
+  .menu-nav {
+    margin-bottom: 302px;
+
+    text-align: left;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.17;
+    text-align: left;
+    letter-spacing: 0.02em;
+
+    &__nav-item:not(:last-child) {
+      margin-bottom: 32px;
+    }
+
+    &--current {
+      color: $action-text-color;
+    }
+  }
+
+  .menu-socials {
+    display: flex;
+
+    &__list {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 0.02em;
+      color: $action-text-color;
+
+      &:not(:first-child) {
+        padding-left: 10px;
+      }
+      &:not(:last-child) {
+        border-right: 1px solid rgba(33, 33, 33, 0.2);
+        padding-right: 10px;
+      }
+    }
+  }
+
+  .menu-contacts {
+    margin-bottom: 64px;
+    &__content {
+      font-weight: 500;
+      font-size: 34px;
+      line-height: 1.17;
+      letter-spacing: 0.02em;
+      color: $action-text-color;
+    }
+    &__item--margin {
+      margin-bottom: 32px;
+    }
+
+    &__content--email {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.16;
+      letter-spacing: 0.02em;
+
+      color: $second-text-color;
+    }
+  }
+  ________________________________________________
