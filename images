@@ -1,0 +1,112 @@
+  в общих стилях указать:
+  
+  img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+____________________________________________________
+для фоновых изображений:
+первая используется картинка для мобильной версии х1 и х2(ретина), затем таблетка и десктоп
+(в данном случае есть еффект затемнения градиентом и резервный фоновый цвет серый вдруг не подгрузится имг)
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: $hero-bg-color;
+  background-size: cover;
+
+  max-width: 1400px;
+
+  background-image: linear-gradient(
+      to right,
+      rgba(47, 48, 58, 0.4),
+      rgba(47, 48, 58, 0.4)
+    ),
+    url("../images/hero/hero480.jpg");
+
+  @include mq(retina) {
+    background-image: linear-gradient(
+        to right,
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
+      ),
+      url("../images/hero/hero480@2x.jpg");
+  }
+
+  @include mq(tablet-only) {
+    background-image: linear-gradient(
+        to right,
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
+      ),
+      url("../images/hero/hero768.jpg");
+
+    @include mq(retina) {
+      background-image: linear-gradient(
+          to right,
+          rgba(47, 48, 58, 0.4),
+          rgba(47, 48, 58, 0.4)
+        ),
+        url("../images/hero/hero768@2x.jpg");
+    }
+  }
+
+  @include mq(desktop) {
+    background-image: linear-gradient(
+        to right,
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
+      ),
+      url("../images/hero/hero1200.jpg");
+
+    @include mq(retina) {
+      background-image: linear-gradient(
+          to right,
+          rgba(47, 48, 58, 0.4),
+          rgba(47, 48, 58, 0.4)
+        ),
+        url("../images/hero/hero1200@2x.jpg");
+    }
+  }
+  
+  
+  
+  
+  
+  
+___________________________________________________________  
+для контентных изображений.
+
+тег пикчер как обертка. соурс - для указания вариантов изображений при определенной ширине вью порта
+в теге имг указывается изображение стартовое(для мобилки) путь и размер
+          
+          <picture>
+                <source
+                  media="(min-width: 1200px)"
+                  srcset="
+                    ./images/team/team1-1200.jpg    1x,
+                    ./images/team/team1-1200@2x.jpg 2x
+                  "
+                  type="image/jpg"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcset="
+                    ./images/team/team1-768.jpg    1x,
+                    ./images/team/team1-768@2x.jpg 2x
+                  "
+                  type="image/jpg"
+                />
+
+                <img
+                  srcset="
+                    ./images/team/team1-480.jpg    1x,
+                    ./images/team/team1-480@2x.jpg 2x
+                  "
+                  src="./images/team/team1-480.jpg"
+                  alt="Игорь"
+                  width="450"
+                />
+           </picture>
+  _______________________________________________________         
+           
